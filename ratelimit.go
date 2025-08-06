@@ -53,8 +53,8 @@ type Store interface {
 	Set(key string, limiter *rate.Limiter)
 }
 
-// NewMiddleware creates a new rate limiting middleware with the given options.
-func NewMiddleware(opts Options) gin.HandlerFunc {
+// New creates a new rate limiting middleware with the given options.
+func New(opts Options) gin.HandlerFunc {
 	// Set default options if not provided.
 	if opts.KeyFunc == nil {
 		opts.KeyFunc = func(c *gin.Context) string {

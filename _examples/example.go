@@ -13,7 +13,7 @@ import (
 func main() {
 	// Default usage
 	app := gin.Default()
-	app.Use(ratelimit.NewMiddleware(ratelimit.Options{
+	app.Use(ratelimit.New(ratelimit.Options{
 		Rate:  rate.Every(time.Second),
 		Burst: 1,
 	}))
@@ -23,7 +23,7 @@ func main() {
 
 	// Custom usage
 	customApp := gin.Default()
-	customApp.Use(ratelimit.NewMiddleware(ratelimit.Options{
+	customApp.Use(ratelimit.New(ratelimit.Options{
 		Rate:  rate.Every(time.Minute),
 		Burst: 5,
 		KeyFunc: func(c *gin.Context) string {
@@ -44,7 +44,7 @@ func main() {
 	redisClient := redis.NewClient(&redis.Options{
 		Addr: "localhost:6379",
 	})
-	redisApp.Use(ratelimit.NewMiddleware(ratelimit.Options{
+	redisApp.Use(ratelimit.New(ratelimit.Options{
 		Rate:  rate.Every(time.Second),
 		Burst: 1,
 		Store: ratelimit.NewRedisStore(redisClient),
@@ -55,7 +55,7 @@ func main() {
 
 	// Per-route usage
 	perRouteApp := gin.Default()
-	rateLimiter := ratelimit.NewMiddleware(ratelimit.Options{
+	rateLimiter := ratelimit.New(ratelimit.Options{
 		Rate:  rate.Every(time.Second),
 		Burst: 1,
 	})
