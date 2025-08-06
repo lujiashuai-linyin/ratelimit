@@ -20,7 +20,7 @@ func TestRateLimiter(t *testing.T) {
 
 	t.Run("DefaultRateLimiter", func(t *testing.T) {
 		r := gin.New()
-		r.Use(NewMiddleware(Options{
+		r.Use(New(Options{
 			Rate:  rate.Every(time.Millisecond * 10),
 			Burst: 1,
 		}))
@@ -43,7 +43,7 @@ func TestRateLimiter(t *testing.T) {
 
 	t.Run("CustomKeyFunc", func(t *testing.T) {
 		r := gin.New()
-		r.Use(NewMiddleware(Options{
+		r.Use(New(Options{
 			Rate:  rate.Every(time.Millisecond * 10),
 			Burst: 1,
 			KeyFunc: func(c *gin.Context) string {
@@ -71,7 +71,7 @@ func TestRateLimiter(t *testing.T) {
 
 	t.Run("CustomOnLimitExceeded", func(t *testing.T) {
 		r := gin.New()
-		r.Use(NewMiddleware(Options{
+		r.Use(New(Options{
 			Rate:  rate.Every(time.Millisecond * 10),
 			Burst: 1,
 			OnLimitExceeded: func(c *gin.Context, l *rate.Limiter) {

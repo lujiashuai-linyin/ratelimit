@@ -16,7 +16,7 @@ The rate limiting middleware can be used as a global middleware, for a specific 
 
 ### Global Rate Limiting
 
-To apply rate limiting to all routes, use the `NewMiddleware` function as a global middleware:
+To apply rate limiting to all routes, use the `New` function as a global middleware:
 
 ```go
 import (
@@ -31,7 +31,7 @@ func main() {
 	r := gin.Default()
 
 	// Apply rate limiting to all requests
-	r.Use(ratelimit.NewMiddleware(ratelimit.Options{
+	r.Use(ratelimit.New(ratelimit.Options{
 		Rate:  rate.Every(time.Second),
 		Burst: 10,
 	}))
@@ -42,14 +42,14 @@ func main() {
 
 ### Route Group Rate Limiting
 
-To apply rate limiting to a specific group of routes, use the `NewMiddleware` function within a route group:
+To apply rate limiting to a specific group of routes, use the `New` function within a route group:
 
 ```go
 func main() {
 	r := gin.Default()
 
 	apiGroup := r.Group("/api")
-	apiGroup.Use(ratelimit.NewMiddleware(ratelimit.Options{
+	apiGroup.Use(ratelimit.New(ratelimit.Options{
 		Rate:  rate.Every(time.Minute),
 		Burst: 100,
 	}))
@@ -85,7 +85,7 @@ func main() {
 		Addr: "localhost:6379",
 	})
 
-	r.Use(ratelimit.NewMiddleware(ratelimit.Options{
+	r.Use(ratelimit.New(ratelimit.Options{
 		// ...
 		Store: ratelimit.NewRedisStore(redisClient),
 	}))
