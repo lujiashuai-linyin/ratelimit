@@ -7,7 +7,7 @@ This document provides instructions on how to use the rate limiting middleware f
 To use the rate limiting middleware, you first need to import it into your project:
 
 ```go
-import "github.com/gin-gonic/gin/middleware/ratelimit"
+import "github.com/gin-contrib/ratelimit"
 ```
 
 ## Usage
@@ -23,7 +23,7 @@ import (
 	"time"
 
 	"github.com/gin-gonic/gin"
-	"github.com/gin-gonic/gin/middleware/ratelimit"
+	"github.com/gin-contrib/ratelimit"
 	"golang.org/x/time/rate"
 )
 
