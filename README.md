@@ -75,7 +75,7 @@ To use a Redis-based store for distributed rate limiting, you need to create a `
 ```go
 import (
 	"github.com/go-redis/redis/v8"
-	"github.com/gin-gonic/gin/middleware/ratelimit"
+	"github.com/gin-contrib/ratelimit"
 )
 
 func main() {
